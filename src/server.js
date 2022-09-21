@@ -1,20 +1,18 @@
-const fastify = require('./configurations/app');
+const app = require('./app')();
 
 const port = process.env.PORT || 8080;
 
-fastify
-    .listen(port, '0.0.0.0')
+app.listen(port, '0.0.0.0')
     .then(() => console.log(`App running at ${port}`))
     .catch(err => console.error(err));
 
-const signals = ['SIGTERM', 'SIGINT'];
-signals.forEach(signal => {
+['SIGTERM', 'SIGINT'].forEach(signal => {
     process.on(signal, async () => {
         try {
             console.info(`${signal} signal received. Closing application...`);
 
             console.info('Closing HTTP server...');
-            await fastify.close();
+            await app.close();
             console.info('HTTP server closed!');
 
             console.info('Application closed successfuly!');

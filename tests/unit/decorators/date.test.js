@@ -2,7 +2,7 @@ const Fastify = require('fastify');
 const t = require('tap');
 
 const { test } = t;
-const dateDecorator = require('../../../../src/domain/shared/plugins/date-plugin');
+const dateDecorator = require('../../../src/decorators/date');
 
 const fastify = Fastify();
 

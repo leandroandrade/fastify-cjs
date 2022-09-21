@@ -6,10 +6,10 @@ function toLocaleDate(date) {
     });
 }
 
-async function datePlugin(fastify, opts) {
+async function date(fastify, opts) {
     fastify.decorate('dateFormat', {
         toLocaleDate,
     });
 }
 
-module.exports = fp(datePlugin);
+module.exports = fp(date);

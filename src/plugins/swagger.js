@@ -1,8 +1,9 @@
 const path = require('path');
 const swagger = require('@fastify/swagger');
+const fp = require('fastify-plugin');
 
-module.exports = app => {
-    app.register(swagger, {
+async function swaggerPlugin(fastify, opts) {
+    fastify.register(swagger, {
         routePrefix: '/docs',
         exposeRoute: true,
         mode: 'static',
@@ -10,4 +11,6 @@ module.exports = app => {
             path: path.join(__dirname, '..', 'swagger', 'sample-swagger.yaml'),
         },
     });
-};
+}
+
+module.exports = fp(swaggerPlugin);

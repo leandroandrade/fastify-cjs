@@ -1,10 +1,12 @@
 const t = require('tap');
+const { buildApp } = require('../shared/helper');
 
 const { test } = t;
-const app = require('../../src/configurations/app');
 
 test('should return sample response', async t => {
-    const response = await app.inject({
+    const fastify = buildApp(t);
+
+    const response = await fastify.inject({
         method: 'GET',
         url: '/api/sample',
     });
