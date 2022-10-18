@@ -2,7 +2,7 @@ const app = require('./app')();
 
 const port = process.env.PORT || 8080;
 
-app.listen(port, '0.0.0.0')
+app.listen({ port, host: '0.0.0.0' })
     .then(() => console.log(`App running at ${port}`))
     .catch(err => console.error(err));
 
