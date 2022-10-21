@@ -9,6 +9,13 @@ function buildApp() {
         genReqId(req) {
             return uuid();
         },
+        ajv: {
+            customOptions: {
+                removeAdditional: true,
+                coerceTypes: 'array',
+                useDefaults: true,
+            },
+        },
     });
 
     app.register(autoLoad, {
