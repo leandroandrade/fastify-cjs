@@ -3,14 +3,14 @@ const { buildApp } = require('../shared/helper');
 
 const { test } = t;
 
-test('should return sample response', async t => {
-    const fastify = buildApp(t);
+test('should return sample response', async (t) => {
+  const fastify = buildApp(t);
 
-    const response = await fastify.inject({
-        method: 'GET',
-        url: '/docs',
-    });
+  const response = await fastify.inject({
+    method: 'GET',
+    url: '/docs',
+  });
 
-    t.equal(response.statusCode, 302);
-    t.equal(typeof response.payload, 'string');
+  t.equal(response.statusCode, 302);
+  t.equal(typeof response.payload, 'string');
 });

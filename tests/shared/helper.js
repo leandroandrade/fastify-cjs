@@ -1,14 +1,14 @@
 const app = require('../../src/app');
 
 function buildApp(t) {
-    const fastify = app();
+  const fastify = app();
 
-    t.teardown(async () => {
-        await fastify.close();
-    });
-    return fastify;
+  t.teardown(async () => {
+    await fastify.close();
+  });
+  return fastify;
 }
 
 module.exports = {
-    buildApp,
+  buildApp,
 };
