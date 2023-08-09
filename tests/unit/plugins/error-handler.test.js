@@ -30,6 +30,7 @@ test('should format date with locale string', async (t) => {
   t.equal(response.statusCode, 400);
   t.strictSame(response.json(), {
     statusCode: 400,
+    code: 'FST_ERR_VALIDATION',
     error: 'Bad Request',
     message: 'params/message must NOT have more than 2 characters',
   });
