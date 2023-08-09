@@ -1,24 +1,36 @@
 const closeWithGrace = require('close-with-grace');
-const app = require('./app')();
+const Fastify = require('fastify');
+
+const app = require('./app');
+const configs = require('./configs');
 
 const port = process.env.PORT || 8080;
 
-app.listen({ port, host: '0.0.0.0' })
-  .then(() => console.log(`App running at ${port}`))
-  .catch((err) => console.error(err));
+const fastify = Fastify(configs);
 
-closeWithGrace({ delay: 10000 }, async ({ signal }) => {
-  try {
-    console.info(`${signal} signal received. Closing application...`);
+async function main() {
+  await app.listen({ port, host: '0.0.0.0' });
 
-    console.info('Closing HTTP server...');
-    await app.close();
-    console.info('HTTP server closed!');
+  fastify.log.info(`App running at ${port}`);
 
-    console.info('Application closed successfuly!');
-    process.exit(0);
-  } catch (err) {
-    console.error(`Application exited with error: ${err}`);
-    process.exit(1);
-  }
+  closeWithGrace({ delay: 10000 }, async ({ signal }) => {
+    try {
+      fastify.log.info(`${signal} signal received. Closing application...`);
+
+      fastify.log.info('Closing HTTP server...');
+      await app.close();
+      fastify.log.info('HTTP server closed!');
+
+      fastify.log.info('Application closed successfully!');
+      process.exit(0);
+    } catch (err) {
+      fastify.log.error(`Application exited with error: ${err}`);
+      process.exit(1);
+    }
+  });
+}
+
+main().catch(err => {
+  fastify.log.error(err, 'Cannot start server');
+  process.exit(1);
 });

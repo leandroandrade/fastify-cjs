@@ -4,7 +4,7 @@ const { buildApp } = require('../shared/helper');
 const { test } = t;
 
 test('should return sample response', async (t) => {
-  const fastify = buildApp(t);
+  const fastify = await buildApp(t);
 
   const response = await fastify.inject({
     method: 'GET',
@@ -15,7 +15,7 @@ test('should return sample response', async (t) => {
 });
 
 test('should return sample response with ids', async (t) => {
-  const fastify = buildApp(t);
+  const fastify = await buildApp(t);
 
   const response = await fastify.inject({
     method: 'GET',
@@ -26,7 +26,7 @@ test('should return sample response with ids', async (t) => {
 });
 
 test('should return sample response with only one ids', async (t) => {
-  const fastify = buildApp(t);
+  const fastify = await buildApp(t);
 
   const response = await fastify.inject({
     method: 'GET',

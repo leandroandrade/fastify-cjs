@@ -1,37 +1,16 @@
-const Fastify = require('fastify');
+const fp = require('fastify-plugin');
 const autoLoad = require('@fastify/autoload');
-const { randomUUID: uuid } = require('crypto');
 const { join } = require('path');
 
-function buildApp() {
-  const app = Fastify({
-    logger: process.env.NODE_ENV !== 'test',
-    genReqId(req) {
-      return uuid();
-    },
-    ajv: {
-      customOptions: {
-        removeAdditional: true,
-        coerceTypes: 'array',
-        useDefaults: true,
-      },
-    },
-  });
-
-  app.register(autoLoad, {
+async function appPlugin(app, config) {
+  await app.register(autoLoad, {
     dir: join(__dirname, 'plugins'),
-  });
-
-  app.register(autoLoad, {
+  }).register(autoLoad, {
     dir: join(__dirname, 'decorators'),
-  });
-
-  app.register(autoLoad, {
+  }).register(autoLoad, {
     dir: join(__dirname, 'routes'),
     options: { prefix: 'api' },
   });
-
-  return app;
 }
 
-module.exports = buildApp;
+module.exports = fp(appPlugin);
