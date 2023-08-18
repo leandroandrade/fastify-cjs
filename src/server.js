@@ -5,11 +5,11 @@ const app = require('./app');
 const configs = require('./configs');
 
 const port = process.env.PORT || 8080;
-
 const fastify = Fastify(configs);
 
 async function main() {
-  await app.listen({ port, host: '0.0.0.0' });
+  await fastify.register(app)
+    .listen({ port, host: '0.0.0.0' });
 
   fastify.log.info(`App running at ${port}`);
 
