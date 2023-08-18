@@ -18,7 +18,7 @@ async function main() {
       fastify.log.info(`${signal} signal received. Closing application...`);
 
       fastify.log.info('Closing HTTP server...');
-      await app.close();
+      await fastify.close();
       fastify.log.info('HTTP server closed!');
 
       fastify.log.info('Application closed successfully!');
