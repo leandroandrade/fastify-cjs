@@ -11,8 +11,6 @@ async function main() {
   await fastify.register(app)
     .listen({ port, host: '0.0.0.0' });
 
-  fastify.log.info(`App running at ${port}`);
-
   closeWithGrace({ delay: 10000 }, async ({ signal }) => {
     try {
       fastify.log.info(`${signal} signal received. Closing application...`);
