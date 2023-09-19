@@ -1,7 +1,7 @@
 const Fastify = require('fastify');
 
 const appPlugin = require('../../src/app');
-const configs = require('../../src/configs');
+const configs = require('./configs-test');
 
 async function buildApp(t) {
   const fastify = Fastify(configs);

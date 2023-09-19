@@ -6,7 +6,6 @@ RUN npm ci --only=production
 
 FROM node:18.17.1-bullseye-slim
 
-ENV NODE_ENV production
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 USER node
 WORKDIR /usr/src/app

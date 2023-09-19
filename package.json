@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test dotenv -e .env.test -- tap --no-coverage",
-    "test:coverage": "cross-env NODE_ENV=test dotenv -e .env.test -- tap --coverage",
+    "test": "dotenv -e .env.test -- tap --no-coverage",
+    "test:coverage": "dotenv -e .env.test -- tap --coverage",
     "dev": "nodemon",
     "start": "node src/server.js"
   },
@@ -48,6 +48,6 @@
     "ignore": [
       "node_modules"
     ],
-    "exec": "cross-env NODE_ENV=development dotenv -e .env -- node src/server.js"
+    "exec": "dotenv -e .env -- node src/server.js"
   }
 }

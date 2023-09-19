@@ -1,7 +1,7 @@
 const { randomUUID } = require('crypto');
 
 module.exports = {
-  logger: true,
+  logger: false,
   genReqId(req) {
     return randomUUID();
   },
