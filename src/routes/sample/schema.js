@@ -1,3 +1,5 @@
+const schemasErrors = require('../schemas-errors');
+
 const getSampleSchema = {
   schema: {
     querystring: {
@@ -16,6 +18,7 @@ const getSampleSchema = {
       },
     },
     response: {
+      ...schemasErrors,
       200: {
         type: 'object',
         properties: {
