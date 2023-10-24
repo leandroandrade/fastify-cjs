@@ -1,17 +1,13 @@
 const closeWithGrace = require('close-with-grace');
-const Fastify = require('fastify');
 
-const app = require('./app');
+const appPlugin = require('./app');
 const configs = require('./configs');
 
-const port = process.env.PORT || 8080;
-const fastify = Fastify(configs);
-
 async function main() {
-  await fastify.register(app)
-    .listen({ port, host: '0.0.0.0' });
+  const fastify = await appPlugin(configs);
+  await fastify.listen({ port: fastify.config.PORT, host: '0.0.0.0' });
 
-  closeWithGrace({ delay: 10000 }, async ({ signal }) => {
+  closeWithGrace({ delay: 1000 }, async ({ signal }) => {
     try {
       fastify.log.info(`${signal} signal received. Closing application...`);
 
@@ -28,7 +24,4 @@ async function main() {
   });
 }
 
-main().catch(err => {
-  fastify.log.error(err, 'Cannot start server');
-  process.exit(1);
-});
+main().catch(() => process.exit(1));

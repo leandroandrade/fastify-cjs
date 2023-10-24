@@ -1,11 +1,8 @@
-const Fastify = require('fastify');
-
 const appPlugin = require('../../src/app');
 const configs = require('./configs-test');
 
 async function buildApp(t) {
-  const fastify = Fastify(configs);
-  await fastify.register(appPlugin);
+  const fastify = await appPlugin(configs);
 
   t.teardown(async () => {
     await fastify.close();
