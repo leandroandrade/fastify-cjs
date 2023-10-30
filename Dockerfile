@@ -1,11 +1,10 @@
-FROM node:18.17.1-bullseye-slim AS build
+FROM node:20.9.0-bullseye-slim AS build
 RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN npm ci --only=production
 
-FROM node:18.17.1-bullseye-slim
-
+FROM node:20.9.0-bullseye-slim
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 USER node
 WORKDIR /usr/src/app

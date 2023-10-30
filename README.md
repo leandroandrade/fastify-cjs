@@ -2,12 +2,6 @@
 
 Sample boilerplate using fastify with commonjs.
 
-## Requirements
-* Node.js
-    * version: >=16.0.0
-* NPM
-* Git
-
 ## Get started
 
 Details to configure local environment:
@@ -47,13 +41,19 @@ To access the API documentation, you can use the link below:
 http://localhost:3000/docs
 ```
 
+## Build Image
+
+Command do build docker image:
+```shell
+docker build -t leandromandrade/fastify-cjs .
+```
 
 ## Production
 
 Starting application in production environment:
 
 ```shell
-docker compose -f docker-compose-production.yml up -d
+docker compose -f docker-compose-production.yml up -d --build
 ```
 
 Stopping application in production environment:
