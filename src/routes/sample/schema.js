@@ -38,6 +38,13 @@ const getSampleSchema = {
   },
 };
 
+const schemaError = {
+  response: {
+    ...schemasErrors,
+  },
+};
+
 module.exports = {
   getSampleSchema,
+  schemaError,
 };
