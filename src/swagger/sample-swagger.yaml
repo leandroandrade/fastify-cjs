@@ -1,95 +1,125 @@
-swagger: '2.0'
+openapi: 3.0.1
 info:
-  description: 'Sample documentation'
-  version: '1.0.0'
-  title: 'Sample'
+  title: Sample API
+  description: Sample API description.
+  version: 1.0.0
   contact:
-    email: 'leandro.andrade2588@gmail.com'
-host: 'localhost:3000'
-basePath: '/api'
+    name: Leandro Andrade
+    email: leandro.andrade2588@gmail.com
+servers:
+  - url: http://localhost:3000/api
+    description: Localhost
 tags:
-  - name: 'Sample'
-    description: 'Sample services'
-schemes:
-  - 'http'
+  - name: Sample
+    description: Sample Services
+
 paths:
-  '/sample':
+  /sample:
     get:
       tags:
         - Sample
-      summary: 'Sample service'
-      description: 'Sample description.'
-      produces:
-        - 'application/json'
-      parameters:
-        - in: 'query'
-          name: 'key'
-          description: 'Number of key'
-          type: 'integer'
-          required: false
-          default: 1
+      summary: Sample Summary
+      description: Sample description.
       responses:
         200:
-          description: 'The operation was completed successfully'
-          schema:
-            $ref: '#/definitions/ResponseSample'
+          $ref: '#/components/responses/Sample'
         400:
-          description: 'Validation errors'
-          schema:
-            $ref: '#/definitions/ResponseValidationError'
+          $ref: '#/components/responses/BadRequest'
         404:
-          description: 'Not found errors'
-          schema:
-            $ref: '#/definitions/ResponseNotfoundError'
+          $ref: '#/components/responses/NotFound'
         500:
-          description: 'Internal server errors'
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Sample
+      summary: Sample Summary
+      description: Sample description.
+      requestBody:
+        $ref: '#/components/requestBodies/Sample'
+      responses:
+        201:
+          $ref: '#/components/responses/Sample'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          description: http code.
+          example: 400
+        error:
+          type: string
+          description: http error.
+          example: Bad Request
+        message:
+          type: string
+          description: message detail.
+          example: the information should be send.
+  responses:
+    Sample:
+      description: Sample
+      content:
+        application/json:
           schema:
-            $ref: '#/definitions/ResponseServerError'
+            type: object
+            properties:
+              key:
+                type: integer
+                description: Sample key.
+                example: 1
+              value:
+                type: string
+                description: Sample value.
+                example: 'Sample'
+    BadRequest:
+      description: BadRequest
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: InternalServerError
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
 
-definitions:
-  ResponseSample:
-    type: 'object'
-    properties:
-      key:
-        type: 'integer'
-        example: 1
-      today:
-        type: 'string'
-        example: 'June 2, 2009'
-  ResponseValidationError:
-    type: 'object'
-    properties:
-      code:
-        type: 'integer'
-        example: 400
-      message:
-        type: 'string'
-        example: 'Some invalid data!'
-      date:
-        type: 'string'
-        example: '2022-05-22T11:08:12.359Z'
-  ResponseNotfoundError:
-    type: 'object'
-    properties:
-      code:
-        type: 'integer'
-        example: 404
-      message:
-        type: 'string'
-        example: 'Data not found!'
-      date:
-        type: 'string'
-        example: '2022-05-19T11:08:12.359Z'
-  ResponseServerError:
-    type: 'object'
-    properties:
-      code:
-        type: 'integer'
-        example: 500
-      message:
-        type: 'string'
-        example: 'Internal server errors'
-      date:
-        type: 'string'
-        example: '2022-05-19T11:08:15.998Z'
-
+  requestBodies:
+    Sample:
+      description: Sample Payload
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              key:
+                type: integer
+                description: Sample key.
+                example: 1
+              value:
+                type: string
+                description: Sample value.
+                example: Sample
+            required:
+              - key
+              - value
