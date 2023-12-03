@@ -1,5 +1,3 @@
-const createError = require('http-errors');
-
 const { getSampleSchema, schemaError } = require('./schema');
 const { makeSampleController } = require('../../data/factories/make-sample-controller');
 
@@ -9,6 +7,6 @@ module.exports = async (fastify, opts) => {
   });
 
   fastify.get('/error', schemaError, (req, reply) => {
-    return createError(404, 'Sample Error!');
+    return fastify.httpErrors.notFound('Sample Error!');
   });
 };
