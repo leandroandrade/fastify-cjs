@@ -7,6 +7,8 @@ async function envPlugin(fastify, opts) {
     required: ['PORT'],
     properties: {
       PORT: { type: 'string', default: 3000 },
+      RATELIMIT_MAX_REQUEST_TIME_WINDOW: { type: 'integer' },
+      RATELIMIT_TIME_WINDOW: { type: 'integer' },
     },
   };
 
