@@ -4,7 +4,11 @@ const fastifyEnv = require('@fastify/env');
 async function envPlugin(fastify, opts) {
   const schema = {
     type: 'object',
-    required: ['PORT'],
+    required: [
+      'PORT',
+      'RATELIMIT_MAX_REQUEST_TIME_WINDOW',
+      'RATELIMIT_TIME_WINDOW',
+    ],
     properties: {
       PORT: { type: 'string', default: 3000 },
       RATELIMIT_MAX_REQUEST_TIME_WINDOW: { type: 'integer' },
@@ -14,7 +18,6 @@ async function envPlugin(fastify, opts) {
 
   await fastify.register(fastifyEnv, {
     schema,
-    dotenv: true,
   });
 }
 
