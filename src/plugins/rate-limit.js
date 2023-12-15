@@ -9,5 +9,6 @@ async function rateLimitPlugin(fastify, opts) {
 }
 
 module.exports = fp(rateLimitPlugin, {
+  name: 'ratelimit',
   dependencies: ['env'],
 });
