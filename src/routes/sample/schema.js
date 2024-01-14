@@ -3,6 +3,7 @@ const schemasErrors = require('../schemas-errors');
 const getSampleSchema = {
   schema: {
     querystring: {
+      additionalProperties: false,
       type: 'object',
       properties: {
         key: {
