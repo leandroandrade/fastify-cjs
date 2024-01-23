@@ -1,7 +1,10 @@
 const { randomUUID } = require('crypto');
 
 module.exports = {
-  logger: true,
+  disableRequestLogging: true,
+  logger: {
+    level: process.env.LOG_LEVEL || 'debug',
+  },
   genReqId(req) {
     return randomUUID();
   },
