@@ -1,5 +1,8 @@
 const { randomUUID } = require('crypto');
 
+/**
+ * @type {import('fastify').FastifyServerOptions} Instance of Fastify
+ */
 module.exports = {
   disableRequestLogging: true,
   logger: {
