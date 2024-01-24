@@ -18,5 +18,5 @@ module.exports = {
       useDefaults: true,
     },
   },
-  ignoreTrailingSlash: true
+  ignoreTrailingSlash: true,
 };
