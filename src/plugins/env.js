@@ -6,17 +6,21 @@ async function envPlugin(fastify, opts) {
     type: 'object',
     required: [
       'PORT',
-      'RATELIMIT_MAX_REQUEST_TIME_WINDOW',
-      'RATELIMIT_TIME_WINDOW',
-      'RATELIMIT_MAX_REQUEST_TIME_WINDOW_NOT_FOUND',
-      'RATELIMIT_TIME_WINDOW_NOT_FOUND',
+
+      'RATELIMIT_GLOBAL_MAX',
+      'RATELIMIT_GLOBAL_TIME_WINDOW',
+
+      'RATELIMIT_GLOBAL_MAX_NOT_FOUND',
+      'RATELIMIT_GLOBAL_TIME_WINDOW_NOT_FOUND',
     ],
     properties: {
       PORT: { type: 'string', default: 3000 },
-      RATELIMIT_MAX_REQUEST_TIME_WINDOW: { type: 'integer' },
-      RATELIMIT_TIME_WINDOW: { type: 'integer' },
-      RATELIMIT_MAX_REQUEST_TIME_WINDOW_NOT_FOUND: { type: 'integer' },
-      RATELIMIT_TIME_WINDOW_NOT_FOUND: { type: 'integer' },
+
+      RATELIMIT_GLOBAL_MAX: { type: 'integer' },
+      RATELIMIT_GLOBAL_TIME_WINDOW: { type: 'integer' },
+
+      RATELIMIT_GLOBAL_MAX_NOT_FOUND: { type: 'integer' },
+      RATELIMIT_GLOBAL_TIME_WINDOW_NOT_FOUND: { type: 'integer' },
     },
   };
 

@@ -3,8 +3,8 @@ const rateLimit = require('@fastify/rate-limit');
 
 async function rateLimitPlugin(fastify, opts) {
   fastify.register(rateLimit, {
-    max: fastify.config.RATELIMIT_MAX_REQUEST_TIME_WINDOW,
-    timeWindow: fastify.config.RATELIMIT_TIME_WINDOW,
+    max: fastify.config.RATELIMIT_GLOBAL_MAX,
+    timeWindow: fastify.config.RATELIMIT_GLOBAL_TIME_WINDOW,
   });
 }
 

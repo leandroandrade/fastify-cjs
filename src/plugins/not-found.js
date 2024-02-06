@@ -1,12 +1,14 @@
 const fp = require('fastify-plugin');
 
-async function notfoundPlugin(fastify, opts) {
-  fastify.setNotFoundHandler({
+async function notfoundPlugin(fastify) {
+  const opts = {
     preHandler: fastify.rateLimit({
-      max: fastify.config.RATELIMIT_MAX_REQUEST_TIME_WINDOW_NOT_FOUND,
-      timeWindow: fastify.config.RATELIMIT_TIME_WINDOW_NOT_FOUND,
+      max: fastify.config.RATELIMIT_GLOBAL_MAX_NOT_FOUND,
+      timeWindow: fastify.config.RATELIMIT_GLOBAL_TIME_WINDOW_NOT_FOUND,
     }),
-  }, (req, reply) => {
+  };
+
+  fastify.setNotFoundHandler(opts, (req, reply) => {
     return fastify.httpErrors.notFound('Resource not found');
   });
 }
