@@ -2,12 +2,14 @@ const Fastify = require('fastify');
 const t = require('tap');
 
 const { test } = t;
+const sensiblePlugin = require('../../../src/plugins/sensible');
 const errorHandler = require('../../../src/plugins/error-handler');
 
 test('should format date with locale string', async (t) => {
   const fastify = Fastify();
   t.teardown(fastify.close.bind(fastify));
 
+  await fastify.register(sensiblePlugin);
   await fastify.register(errorHandler);
 
   const schema = {
@@ -40,6 +42,7 @@ test('should return generic error', async t => {
   const fastify = Fastify();
   t.teardown(fastify.close.bind(fastify));
 
+  await fastify.register(sensiblePlugin);
   await fastify.register(errorHandler);
 
   fastify.get('/', (request, reply) => {
@@ -68,6 +71,7 @@ test('should return custom error', async t => {
   const fastify = Fastify();
   t.teardown(fastify.close.bind(fastify));
 
+  await fastify.register(sensiblePlugin);
   await fastify.register(errorHandler);
 
   fastify.get('/', (request, reply) => {

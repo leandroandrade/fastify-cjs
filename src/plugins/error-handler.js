@@ -14,11 +14,7 @@ async function errorHandlerPlugin(fastify, opts) {
       return reply.send(err);
     }
 
-    return reply.status(500).send({
-      statusCode: 500,
-      error: 'Internal Server Error',
-      message: 'Unexpected error occurred!',
-    });
+    return fastify.httpErrors.internalServerError('Unexpected error occurred!');
   });
 }
 
