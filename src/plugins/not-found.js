@@ -9,7 +9,7 @@ async function notfoundPlugin(fastify) {
   };
 
   fastify.setNotFoundHandler(opts, (req, reply) => {
-    return fastify.httpErrors.notFound('Resource not found');
+    return fastify.httpErrors.notFound('Sorry, we could not find what you were looking for.');
   });
 }
 

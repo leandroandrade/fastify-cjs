@@ -15,7 +15,7 @@ test('should return 404 with rate limit headers', async (t) => {
   t.same(res.json(), {
     statusCode: 404,
     error: 'Not Found',
-    message: 'Resource not found',
+    message: 'Sorry, we could not find what you were looking for.',
   });
 
   const { headers } = res;

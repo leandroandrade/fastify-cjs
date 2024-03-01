@@ -55,7 +55,7 @@ test('should return generic error', async t => {
   t.strictSame(response.json(), {
     statusCode: 500,
     error: 'Internal Server Error',
-    message: 'Unexpected error occurred!',
+    message: 'Sorry, there was an error processing your request.',
   });
 });
 

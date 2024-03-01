@@ -14,7 +14,7 @@ async function errorHandlerPlugin(fastify, opts) {
       return reply.send(err);
     }
 
-    return fastify.httpErrors.internalServerError('Unexpected error occurred!');
+    return fastify.httpErrors.internalServerError('Sorry, there was an error processing your request.');
   });
 }
 
