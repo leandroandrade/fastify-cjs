@@ -7,13 +7,14 @@ async function main() {
   const fastify = await appPlugin(configs);
   await fastify.listen({ port: fastify.config.PORT, host: '0.0.0.0' });
 
-  closeWithGrace({ delay: 1000 }, async ({ err }) => {
+  closeWithGrace({ delay: 1000 }, async ({ signal, err }) => {
     if (err) {
-      fastify.log.info({ err }, 'server closing due to error');
+      fastify.log.error({ err }, 'server closing due to error');
+    } else {
+      fastify.log.info(`${signal} received, server closing...`);
     }
-    fastify.log.info('closing server...');
-
     await fastify.close();
+
     fastify.log.info('server closed!');
   });
 }
