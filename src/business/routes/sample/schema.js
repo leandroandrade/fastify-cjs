@@ -1,6 +1,6 @@
 const schemasErrors = require('../schemas-errors');
 
-const getSampleSchema = {
+const sampleSchema = {
   schema: {
     querystring: {
       additionalProperties: false,
@@ -46,6 +46,6 @@ const schemaError = {
 };
 
 module.exports = {
-  getSampleSchema,
+  sampleSchema,
   schemaError,
 };

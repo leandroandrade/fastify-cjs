@@ -8,7 +8,7 @@ async function swaggerPlugin(fastify, opts) {
     exposeRoute: true,
     mode: 'static',
     specification: {
-      path: path.join(__dirname, '..', 'swagger', 'sample-swagger.yaml'),
+      path: path.join(__dirname, '..', '..', 'business', 'swagger', 'sample-swagger.yaml'),
     },
   });
 

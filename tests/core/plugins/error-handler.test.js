@@ -2,8 +2,8 @@ const Fastify = require('fastify');
 const t = require('tap');
 
 const { test } = t;
-const sensiblePlugin = require('../../../src/plugins/sensible');
-const errorHandler = require('../../../src/plugins/error-handler');
+const sensiblePlugin = require('../../../src/core/plugins/sensible');
+const errorHandler = require('../../../src/core/plugins/error-handler');
 
 test('should format date with locale string', async (t) => {
   const fastify = Fastify();

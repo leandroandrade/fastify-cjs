@@ -2,7 +2,7 @@ const Fastify = require('fastify');
 const t = require('tap');
 
 const { test } = t;
-const dateDecorator = require('../../../src/decorators/date');
+const dateDecorator = require('../../../src/business/decorators/date');
 
 test('should format date with locale string', async (t) => {
   const fastify = Fastify();

@@ -6,12 +6,13 @@ async function appPlugin(configs) {
   const app = Fastify(configs);
 
   await app.register(autoLoad, {
-    dir: join(__dirname, 'plugins'),
+    dir: join(__dirname, 'core'),
+    encapsulate: false,
+    maxDepth: 0,
   }).register(autoLoad, {
-    dir: join(__dirname, 'decorators'),
-  }).register(autoLoad, {
-    dir: join(__dirname, 'routes'),
-    options: { prefix: 'api' },
+    dir: join(__dirname, 'business'),
+    encapsulate: false,
+    maxDepth: 0,
   });
 
   app.get('/', (req, reply) => {

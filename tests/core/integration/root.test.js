@@ -1,5 +1,5 @@
 const t = require('tap');
-const { buildApp } = require('../shared/helper');
+const { buildApp } = require('../../shared/helper');
 
 const { test } = t;
 
