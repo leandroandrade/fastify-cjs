@@ -20,4 +20,5 @@ module.exports = {
   },
   ignoreTrailingSlash: true,
   bodyLimit: 4 * 1024, // 4 KB
+  requestTimeout: 30000,
 };
