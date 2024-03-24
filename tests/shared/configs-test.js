@@ -12,4 +12,5 @@ module.exports = {
       useDefaults: true,
     },
   },
+  bodyLimit: 4 * 1024, // 4 KB
 };
