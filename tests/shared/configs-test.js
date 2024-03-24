@@ -1,16 +1,6 @@
-const { randomUUID } = require('crypto');
+const configs = require('../../src/configs');
 
 module.exports = {
+  ...configs,
   logger: false,
-  genReqId(req) {
-    return randomUUID();
-  },
-  ajv: {
-    customOptions: {
-      removeAdditional: true,
-      coerceTypes: 'array',
-      useDefaults: true,
-    },
-  },
-  bodyLimit: 4 * 1024, // 4 KB
 };
