@@ -5,9 +5,9 @@ async function errorHandlerPlugin(fastify, opts) {
     const { statusCode } = err;
 
     if (statusCode >= 400 && statusCode <= 499) {
-      fastify.log.info(err?.message);
+      req.log.info(err?.message);
     } else {
-      fastify.log.error({ err }, err?.message);
+      req.log.error({ err }, err?.message);
     }
 
     if (statusCode >= 400 && statusCode <= 499) {

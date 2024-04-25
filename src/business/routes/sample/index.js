@@ -4,7 +4,8 @@ module.exports = async (fastify, opts) => {
   fastify.get('/', sampleSchema, (req, reply) => {
     const { key, ids } = req.query;
 
-    fastify.log.info('Sample logging...');
+    req.log.info('Sample logging...');
+
     const date = fastify.repositories.getDateRepository(2022, 10, 25);
     return reply.send({
       key,

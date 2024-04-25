@@ -9,7 +9,7 @@ module.exports = {
     level: process.env.LOG_LEVEL || 'debug',
   },
   genReqId(req) {
-    return randomUUID();
+    return req.headers['x-correlation-id'] || randomUUID();
   },
   ajv: {
     customOptions: {
