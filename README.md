@@ -30,6 +30,11 @@ Command to run tests:
 npm t
 ```
 
+Run single test file:
+```
+npx dotenv -e .env.test -- tap tests/business/decorators/date.test.js --disable-coverage
+```
+
 Base url to API:
 ```
 http://localhost:3000/api
