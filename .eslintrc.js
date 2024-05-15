@@ -4,7 +4,7 @@ module.exports = {
     commonjs: true,
     es2021: true,
   },
-  extends: ['airbnb-base'],
+  extends: ['airbnb-base', 'plugin:security/recommended-legacy'],
   plugins: ['security'],
   globals: {
     Atomics: 'readonly',
