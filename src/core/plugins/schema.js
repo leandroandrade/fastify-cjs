@@ -11,7 +11,7 @@ async function defaultSchemas(fastify, opts) {
   };
 
   fastify.addSchema({
-    $id: 'http',
+    $id: 'error',
     ...schemaError,
   });
 }

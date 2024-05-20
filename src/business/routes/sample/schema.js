@@ -33,10 +33,10 @@ const sampleSchema = {
         },
       },
       '4xx': {
-        $ref: 'http#',
+        $ref: 'error#',
       },
       '5xx': {
-        $ref: 'http#',
+        $ref: 'error#',
       },
     },
   },
@@ -45,10 +45,10 @@ const sampleSchema = {
 const schemaError = {
   response: {
     '4xx': {
-      $ref: 'http#',
+      $ref: 'error#',
     },
     '5xx': {
-      $ref: 'http#',
+      $ref: 'error#',
     },
   },
 };
