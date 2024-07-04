@@ -11,6 +11,6 @@ test('should return sample response', async (t) => {
     url: '/docs',
   });
 
-  t.equal(response.statusCode, 302);
+  t.equal(response.statusCode, 200);
   t.equal(typeof response.payload, 'string');
 });
