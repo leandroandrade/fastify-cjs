@@ -37,7 +37,7 @@
     "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-security": "^3.0.1",
     "nodemon": "^3.1.4",
     "tap": "^20.0.3"
