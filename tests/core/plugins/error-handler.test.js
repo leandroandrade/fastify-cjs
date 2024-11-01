@@ -14,9 +14,12 @@ test('should format date with locale string', async (t) => {
 
   const schema = {
     params: {
-      message: {
-        type: 'string',
-        maxLength: 2,
+      type: 'object',
+      properties: {
+        message: {
+          type: 'string',
+          maxLength: 2,
+        },
       },
     },
   };
