@@ -139,3 +139,5 @@ test-report.xml
 .DS_Store
 
 ztest
+
+package-lock.json
