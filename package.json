@@ -10,7 +10,7 @@
     "start": "node src/server.js"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22"
   },
   "repository": {
     "type": "git",
