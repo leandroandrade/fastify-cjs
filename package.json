@@ -34,8 +34,8 @@
     "fastify-plugin": "^5.0.1"
   },
   "devDependencies": {
-    "dotenv-cli": "^7.4.2",
-    "eslint": "^8.57.0",
+    "dotenv-cli": "^8.0.0",
+    "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-security": "^3.0.1",
