@@ -6,7 +6,7 @@ const { randomUUID } = require('crypto');
 module.exports = {
   disableRequestLogging: true,
   logger: {
-    level: process.env.LOG_LEVEL || 'debug',
+    level: process.env.LOG_LEVEL || 'debug'
   },
   genReqId(req) {
     return req.headers['x-correlation-id'] || randomUUID();
@@ -15,10 +15,10 @@ module.exports = {
     customOptions: {
       removeAdditional: true,
       coerceTypes: 'array',
-      useDefaults: true,
-    },
+      useDefaults: true
+    }
   },
   ignoreTrailingSlash: true,
   bodyLimit: 4 * 1024, // 4 KB
-  requestTimeout: 30000,
+  requestTimeout: 30000
 };

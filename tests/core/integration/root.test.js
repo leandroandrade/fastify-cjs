@@ -8,7 +8,7 @@ test('should return sample response', async (t) => {
 
   const res = await fastify.inject({
     method: 'GET',
-    url: '/',
+    url: '/'
   });
 
   t.equal(res.statusCode, 200);

@@ -10,7 +10,7 @@ module.exports = async (fastify, opts) => {
     return reply.send({
       key,
       today: fastify.dateFormat.toLocaleDate(date),
-      ids,
+      ids
     });
   });
 

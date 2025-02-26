@@ -18,10 +18,10 @@ test('should format date with locale string', async (t) => {
       properties: {
         message: {
           type: 'string',
-          maxLength: 2,
-        },
-      },
-    },
+          maxLength: 2
+        }
+      }
+    }
   };
   fastify.get('/:message', { schema }, async (req, reply) => {
     t.fail('should not pass here!');
@@ -29,7 +29,7 @@ test('should format date with locale string', async (t) => {
 
   const response = await fastify.inject({
     method: 'GET',
-    url: '/hello',
+    url: '/hello'
   });
 
   t.equal(response.statusCode, 400);
@@ -37,7 +37,7 @@ test('should format date with locale string', async (t) => {
     statusCode: 400,
     code: 'FST_ERR_VALIDATION',
     error: 'Bad Request',
-    message: 'params/message must NOT have more than 2 characters',
+    message: 'params/message must NOT have more than 2 characters'
   });
 });
 
@@ -58,7 +58,7 @@ test('should return generic error', async t => {
   t.strictSame(response.json(), {
     statusCode: 500,
     error: 'Internal Server Error',
-    message: 'Sorry, there was an error processing your request.',
+    message: 'Sorry, there was an error processing your request.'
   });
 });
 
@@ -87,6 +87,6 @@ test('should return custom error', async t => {
   t.strictSame(response.json(), {
     statusCode: 422,
     error: 'Unprocessable Entity',
-    message: 'Custom Error!',
+    message: 'Custom Error!'
   });
 });

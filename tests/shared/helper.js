@@ -11,5 +11,5 @@ async function buildApp(t) {
 }
 
 module.exports = {
-  buildApp,
+  buildApp
 };

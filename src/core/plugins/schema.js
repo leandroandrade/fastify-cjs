@@ -6,13 +6,13 @@ async function defaultSchemas(fastify, opts) {
     properties: {
       statusCode: { type: 'integer' },
       error: { type: 'string' },
-      message: { type: 'string' },
-    },
+      message: { type: 'string' }
+    }
   };
 
   fastify.addSchema({
     $id: 'error',
-    ...schemaError,
+    ...schemaError
   });
 }
 

@@ -8,11 +8,11 @@ async function appPlugin(configs) {
   await app.register(autoLoad, {
     dir: join(__dirname, 'core'),
     encapsulate: false,
-    maxDepth: 0,
+    maxDepth: 0
   }).register(autoLoad, {
     dir: join(__dirname, 'business'),
     encapsulate: false,
-    maxDepth: 0,
+    maxDepth: 0
   });
 
   app.get('/', (req, reply) => {

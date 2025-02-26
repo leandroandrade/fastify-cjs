@@ -4,12 +4,12 @@ const { join } = require('path');
 
 async function appPlugin(app, config) {
   await app.register(autoLoad, {
-    dir: join(__dirname, 'decorators'),
+    dir: join(__dirname, 'decorators')
   }).register(autoLoad, {
     dir: join(__dirname, 'routes'),
-    options: { prefix: 'api' },
+    options: { prefix: 'api' }
   }).register(autoLoad, {
-    dir: join(__dirname, 'repositories'),
+    dir: join(__dirname, 'repositories')
   });
 }
 

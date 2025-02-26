@@ -4,7 +4,7 @@ const { join } = require('path');
 
 async function appPlugin(app, config) {
   await app.register(autoLoad, {
-    dir: join(__dirname, 'plugins'),
+    dir: join(__dirname, 'plugins')
   });
 }
 

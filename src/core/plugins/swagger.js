@@ -8,13 +8,13 @@ async function swaggerPlugin(fastify, opts) {
     exposeRoute: true,
     mode: 'static',
     specification: {
-      path: path.join(__dirname, '..', '..', 'business', 'swagger', 'sample-swagger.yaml'),
-    },
+      path: path.join(__dirname, '..', '..', 'business', 'swagger', 'sample-swagger.yaml')
+    }
   });
 
   fastify.register(fastifySwaggerUi, {
     routePrefix: '/docs',
-    logLevel: 'silent',
+    logLevel: 'silent'
   });
 }
 

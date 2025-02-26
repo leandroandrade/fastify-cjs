@@ -7,53 +7,53 @@ const sampleSchema = {
         key: {
           type: 'integer',
           default: 1,
-          minimum: 1,
+          minimum: 1
         },
         ids: {
           type: 'array',
           items: { type: 'string' },
-          default: [],
-        },
-      },
+          default: []
+        }
+      }
     },
     response: {
       200: {
         type: 'object',
         properties: {
           key: {
-            type: 'integer',
+            type: 'integer'
           },
           today: {
-            type: 'string',
+            type: 'string'
           },
           ids: {
             type: 'array',
-            items: { type: 'string' },
-          },
-        },
+            items: { type: 'string' }
+          }
+        }
       },
       '4xx': {
-        $ref: 'error#',
+        $ref: 'error#'
       },
       '5xx': {
-        $ref: 'error#',
-      },
-    },
-  },
+        $ref: 'error#'
+      }
+    }
+  }
 };
 
 const schemaError = {
   response: {
     '4xx': {
-      $ref: 'error#',
+      $ref: 'error#'
     },
     '5xx': {
-      $ref: 'error#',
-    },
-  },
+      $ref: 'error#'
+    }
+  }
 };
 
 module.exports = {
   sampleSchema,
-  schemaError,
+  schemaError
 };

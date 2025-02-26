@@ -12,7 +12,7 @@ async function envPlugin(fastify, opts) {
       'RATELIMIT_GLOBAL_TIME_WINDOW',
 
       'RATELIMIT_GLOBAL_MAX_NOT_FOUND',
-      'RATELIMIT_GLOBAL_TIME_WINDOW_NOT_FOUND',
+      'RATELIMIT_GLOBAL_TIME_WINDOW_NOT_FOUND'
     ],
     properties: {
       PORT: { type: 'string', default: 3000 },
@@ -22,15 +22,15 @@ async function envPlugin(fastify, opts) {
       RATELIMIT_GLOBAL_TIME_WINDOW: { type: 'integer' },
 
       RATELIMIT_GLOBAL_MAX_NOT_FOUND: { type: 'integer' },
-      RATELIMIT_GLOBAL_TIME_WINDOW_NOT_FOUND: { type: 'integer' },
-    },
+      RATELIMIT_GLOBAL_TIME_WINDOW_NOT_FOUND: { type: 'integer' }
+    }
   };
 
   await fastify.register(fastifyEnv, {
-    schema,
+    schema
   });
 }
 
 module.exports = fp(envPlugin, {
-  name: 'env',
+  name: 'env'
 });
