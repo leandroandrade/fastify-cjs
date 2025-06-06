@@ -1,7 +1,5 @@
-const t = require('tap');
+const { test } = require('node:test');
 const { buildApp } = require('../../shared/helper');
-
-const { test } = t;
 
 test('should return sample response', async (t) => {
   const fastify = await buildApp(t);
@@ -10,8 +8,9 @@ test('should return sample response', async (t) => {
     method: 'GET',
     url: '/api/sample'
   });
-  t.equal(response.statusCode, 200);
-  t.same(response.json(), { key: 1, today: 'November 25, 2022', ids: [] });
+
+  t.assert.strictEqual(response.statusCode, 200);
+  t.assert.deepStrictEqual(response.json(), { key: 1, today: 'November 25, 2022', ids: [] });
 });
 
 test('should return sample response with ids', async (t) => {
@@ -21,8 +20,9 @@ test('should return sample response with ids', async (t) => {
     method: 'GET',
     url: '/api/sample/?ids=foo&ids=bar'
   });
-  t.equal(response.statusCode, 200);
-  t.same(response.json(), { key: 1, today: 'November 25, 2022', ids: ['foo', 'bar'] });
+
+  t.assert.strictEqual(response.statusCode, 200);
+  t.assert.deepStrictEqual(response.json(), { key: 1, today: 'November 25, 2022', ids: ['foo', 'bar'] });
 });
 
 test('should return sample response with only one ids', async (t) => {
@@ -32,8 +32,9 @@ test('should return sample response with only one ids', async (t) => {
     method: 'GET',
     url: '/api/sample/?ids=foo'
   });
-  t.equal(response.statusCode, 200);
-  t.same(response.json(), { key: 1, today: 'November 25, 2022', ids: ['foo'] });
+
+  t.assert.strictEqual(response.statusCode, 200);
+  t.assert.deepStrictEqual(response.json(), { key: 1, today: 'November 25, 2022', ids: ['foo'] });
 });
 
 test('should return error', async (t) => {
@@ -43,8 +44,9 @@ test('should return error', async (t) => {
     method: 'GET',
     url: '/api/sample/error'
   });
-  t.equal(response.statusCode, 404);
-  t.same(response.json(), {
+
+  t.assert.strictEqual(response.statusCode, 404);
+  t.assert.deepStrictEqual(response.json(), {
     message: 'Sample Error!',
     error: 'Not Found',
     statusCode: 404

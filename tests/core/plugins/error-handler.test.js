@@ -1,13 +1,12 @@
 const Fastify = require('fastify');
-const t = require('tap');
+const { test } = require('node:test');
 
-const { test } = t;
 const sensiblePlugin = require('../../../src/core/plugins/sensible');
 const errorHandler = require('../../../src/core/plugins/error-handler');
 
 test('should format date with locale string', async (t) => {
   const fastify = Fastify();
-  t.teardown(fastify.close.bind(fastify));
+  t.after(async () => { await fastify.close(); });
 
   await fastify.register(sensiblePlugin);
   await fastify.register(errorHandler);
@@ -24,7 +23,7 @@ test('should format date with locale string', async (t) => {
     }
   };
   fastify.get('/:message', { schema }, async (req, reply) => {
-    t.fail('should not pass here!');
+    t.assert.ifError('should not pass here!');
   });
 
   const response = await fastify.inject({
@@ -32,8 +31,8 @@ test('should format date with locale string', async (t) => {
     url: '/hello'
   });
 
-  t.equal(response.statusCode, 400);
-  t.strictSame(response.json(), {
+  t.assert.strictEqual(response.statusCode, 400);
+  t.assert.deepStrictEqual(response.json(), {
     statusCode: 400,
     code: 'FST_ERR_VALIDATION',
     error: 'Bad Request',
@@ -43,7 +42,7 @@ test('should format date with locale string', async (t) => {
 
 test('should return generic error', async t => {
   const fastify = Fastify();
-  t.teardown(fastify.close.bind(fastify));
+  t.after(async () => { await fastify.close(); });
 
   await fastify.register(sensiblePlugin);
   await fastify.register(errorHandler);
@@ -54,8 +53,8 @@ test('should return generic error', async t => {
 
   const response = await fastify.inject('/');
 
-  t.equal(response.statusCode, 500);
-  t.strictSame(response.json(), {
+  t.assert.strictEqual(response.statusCode, 500);
+  t.assert.deepStrictEqual(response.json(), {
     statusCode: 500,
     error: 'Internal Server Error',
     message: 'Sorry, there was an error processing your request.'
@@ -72,7 +71,7 @@ test('should return custom error', async t => {
   }
 
   const fastify = Fastify();
-  t.teardown(fastify.close.bind(fastify));
+  t.after(async () => { await fastify.close(); });
 
   await fastify.register(sensiblePlugin);
   await fastify.register(errorHandler);
@@ -82,9 +81,9 @@ test('should return custom error', async t => {
   });
 
   const response = await fastify.inject('/');
-  t.equal(response.statusCode, 422);
+  t.assert.strictEqual(response.statusCode, 422);
 
-  t.strictSame(response.json(), {
+  t.assert.deepStrictEqual(response.json(), {
     statusCode: 422,
     error: 'Unprocessable Entity',
     message: 'Custom Error!'

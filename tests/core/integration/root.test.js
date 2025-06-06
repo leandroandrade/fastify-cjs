@@ -1,7 +1,5 @@
-const t = require('tap');
+const { test } = require('node:test');
 const { buildApp } = require('../../shared/helper');
-
-const { test } = t;
 
 test('should return sample response', async (t) => {
   const fastify = await buildApp(t);
@@ -11,6 +9,6 @@ test('should return sample response', async (t) => {
     url: '/'
   });
 
-  t.equal(res.statusCode, 200);
-  t.same(res.json(), { message: 'Up and running' });
+  t.assert.strictEqual(res.statusCode, 200);
+  t.assert.deepStrictEqual(res.json(), { message: 'Up and running' });
 });

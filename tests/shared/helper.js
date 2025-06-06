@@ -4,7 +4,7 @@ const configs = require('./configs-test');
 async function buildApp(t) {
   const fastify = await appPlugin(configs);
 
-  t.teardown(async () => {
+  t.after(async () => {
     await fastify.close();
   });
   return fastify;
