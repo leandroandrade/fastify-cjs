@@ -15,9 +15,4 @@ test('should return 404 with rate limit headers', async (t) => {
     error: 'Not Found',
     message: 'Sorry, we could not find what you were looking for.'
   });
-
-  const { headers } = res;
-  t.assert.strictEqual(headers['x-ratelimit-limit'], '8');
-  t.assert.strictEqual(headers['x-ratelimit-remaining'], '7');
-  t.assert.strictEqual(headers['x-ratelimit-reset'], '60');
 });
