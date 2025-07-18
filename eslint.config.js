@@ -13,7 +13,18 @@ module.exports = [
         exports: 'never',
         functions: 'never'
       }],
-      '@stylistic/space-before-function-paren': 'off'
+      'max-len': ['error', {
+        code: 120,
+        tabWidth: 2,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreRegExpLiterals: true,
+        ignoreComments: true,
+        ignoreTrailingComments: true
+      }],
+      '@stylistic/space-before-function-paren': 'off',
+      camelcase: 'off'
     }
   }
 ];
