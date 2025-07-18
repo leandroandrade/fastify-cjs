@@ -7,7 +7,7 @@ const configs = require('./configs');
   const fastify = await appPlugin(configs);
   await fastify.listen({ port: fastify.config.PORT, host: '0.0.0.0' });
 
-  closeWithGrace({ delay: 1000 }, async ({ signal, err }) => {
+  closeWithGrace({ delay: 10000 }, async ({ signal, err }) => {
     if (err) {
       fastify.log.error({ err }, 'server closing due to error');
     } else {
