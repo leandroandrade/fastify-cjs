@@ -20,5 +20,16 @@ module.exports = {
   },
   ignoreTrailingSlash: true,
   bodyLimit: 4 * 1024, // 4 KB
-  requestTimeout: 30000
+  connectionTimeout: 120000,
+
+  // 1 minute: suitable for most payloads, including moderate file uploads
+  requestTimeout: 60000,
+
+  // 10 seconds: ensures efficient resource usage for idle connections
+  keepAliveTimeout: 10000,
+
+  http: {
+    // 15 seconds: prevents slow clients from holding connections too long
+    headersTimeout: 15000
+  }
 };
