@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    branches:
+      - main
     paths-ignore:
       - 'requests/**'
       - '*.md'
@@ -26,3 +28,50 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm test
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install
+
+      - name: Check if triggered by PR merge
+        id: pr-check
+        run: |
+          echo "Verificando se commit é resultado de merge de PR..."
+
+          # Método 1: Verifica mensagem do commit
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "Mensagem do commit: $COMMIT_MESSAGE"
+
+          if [[ $COMMIT_MESSAGE == "Merge pull request"* ]] || [[ $COMMIT_MESSAGE == *"(#"*")"* ]]; then
+            echo "is_pr_merge=true" >> $GITHUB_OUTPUT
+            echo "🔀 Commit resultante de merge de PR detectado (via mensagem)"
+          else
+            # Método 2: Verifica se tem mais de um parent (merge commit)
+            PARENT_COUNT=$(git rev-list --count --parents -n 1 ${{ github.sha }} | awk '{print NF-1}')
+            if [ "$PARENT_COUNT" -gt 1 ]; then
+              echo "is_pr_merge=true" >> $GITHUB_OUTPUT
+              echo "🔀 Merge commit detectado (múltiplos parents)"
+            else
+              echo "is_pr_merge=false" >> $GITHUB_OUTPUT
+              echo "📝 Commit direto na main detectado"
+            fi
+          fi
+
+      - name: Release
+        if: steps.pr-check.outputs.is_pr_merge == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --no-npm
