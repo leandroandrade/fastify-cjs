@@ -5,10 +5,12 @@ async function envPlugin(fastify, opts) {
   const schema = {
     type: 'object',
     required: [
-      'PORT'
+      'PORT',
+      'HOST'
     ],
     properties: {
-      PORT: { type: 'string', default: 3000 }
+      PORT: { type: 'string', default: 3000 },
+      HOST: { type: 'string', default: '0.0.0.0' }
     }
   };
 

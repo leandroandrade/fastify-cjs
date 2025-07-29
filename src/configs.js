@@ -3,7 +3,7 @@ const { randomUUID } = require('crypto');
 /**
  * @type {import('fastify').FastifyServerOptions} Instance of Fastify
  */
-module.exports = {
+module.exports = Object.freeze({
   disableRequestLogging: true,
   logger: {
     level: process.env.LOG_LEVEL || 'debug'
@@ -32,4 +32,4 @@ module.exports = {
     // 15 seconds: prevents slow clients from holding connections too long
     headersTimeout: 15000
   }
-};
+});

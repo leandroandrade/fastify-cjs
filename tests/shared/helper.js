@@ -1,8 +1,7 @@
-const appPlugin = require('../../src/app');
-const configs = require('./configs-test');
+const createApp = require('../../src/app');
 
-async function buildApp(t) {
-  const fastify = await appPlugin(configs);
+async function buildApp(t, customConfigs = { logger: false }) {
+  const fastify = await createApp(customConfigs);
 
   t.after(async () => {
     await fastify.close();

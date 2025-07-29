@@ -5,6 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "test": "node --env-file=.env.test --test ./tests/**/*.test.js",
+    "test:only": "node --env-file=.env.test --test --test-only ./tests/**/*.test.js",
     "test:coverage": "c8 --reporter=text --reporter=lcov --lines 100 node --env-file=.env.test --test ./tests/**/*.test.js",
     "dev": "node --env-file=.env --watch-path=./src src/server.js",
     "start": "node src/server.js",

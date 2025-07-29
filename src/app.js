@@ -2,8 +2,13 @@ const autoLoad = require('@fastify/autoload');
 const { join } = require('path');
 const Fastify = require('fastify');
 
-async function appPlugin(configs) {
-  const app = Fastify(configs);
+const defaultConfigs = require('./configs');
+
+async function createApp(customConfigs = {}) {
+  const app = Fastify({
+    ...defaultConfigs,
+    ...customConfigs
+  });
 
   await app.register(autoLoad, {
     dir: join(__dirname, 'core'),
@@ -22,4 +27,4 @@ async function appPlugin(configs) {
   return app;
 }
 
-module.exports = appPlugin;
+module.exports = createApp;
