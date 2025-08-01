@@ -1,8 +1,9 @@
 const closeWithGrace = require('close-with-grace');
-const appPlugin = require('./app');
+
+const createApp = require('./app');
 
 (async function main() {
-  const fastify = await appPlugin();
+  const fastify = await createApp();
   await fastify.listen({ port: fastify.config.PORT, host: fastify.config.HOST });
 
   closeWithGrace({ delay: 10000 }, async ({ signal, err }) => {
