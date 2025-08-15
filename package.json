@@ -9,8 +9,8 @@
     "test:coverage": "c8 --reporter=text --reporter=lcov --lines 100 node --env-file=.env.test --test ./tests/**/*.test.js",
     "dev": "node --env-file=.env --watch-path=./src src/server.js",
     "start": "node src/server.js",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint": "eslint src",
+    "lint:fix": "npm run lint -- --fix"
   },
   "engines": {
     "node": ">=22"
@@ -32,12 +32,12 @@
     "@fastify/swagger": "^9.5.1",
     "@fastify/swagger-ui": "^5.2.3",
     "close-with-grace": "^2.2.0",
-    "fastify": "^5.4.0",
+    "fastify": "^5.5.0",
     "fastify-plugin": "^5.0.1"
   },
   "devDependencies": {
     "c8": "^10.1.3",
-    "eslint": "^9.31.0",
+    "eslint": "^9.33.0",
     "neostandard": "^0.12.2"
   }
 }

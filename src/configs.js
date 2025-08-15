@@ -18,7 +18,9 @@ module.exports = Object.freeze({
       useDefaults: true
     }
   },
-  ignoreTrailingSlash: true,
+  routerOptions: {
+    ignoreTrailingSlash: true
+  },
   bodyLimit: 4 * 1024, // 4 KB
   connectionTimeout: 120000,
 
