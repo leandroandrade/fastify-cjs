@@ -1,7 +1,7 @@
 const { test } = require('node:test');
 const { buildApp } = require('../../shared/helper');
 
-test('should return 404 with rate limit headers', async (t) => {
+test('[core] should return 404 with rate limit headers', async (t) => {
   const fastify = await buildApp(t);
 
   const res = await fastify.inject({

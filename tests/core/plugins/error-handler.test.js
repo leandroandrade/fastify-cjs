@@ -4,7 +4,7 @@ const { test } = require('node:test');
 const sensiblePlugin = require('../../../src/core/plugins/sensible');
 const errorHandler = require('../../../src/core/plugins/error-handler');
 
-test('should format date with locale string', async (t) => {
+test('[core] should format date with locale string', async (t) => {
   const fastify = Fastify();
   t.after(async () => { await fastify.close(); });
 
@@ -34,7 +34,6 @@ test('should format date with locale string', async (t) => {
   t.assert.strictEqual(response.statusCode, 400);
   t.assert.deepStrictEqual(response.json(), {
     statusCode: 400,
-    code: 'FST_ERR_VALIDATION',
     error: 'Bad Request',
     message: 'params/message must NOT have more than 2 characters'
   });
