@@ -1,0 +1,33 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      semver:
+        description: 'The semver to use'
+        required: true
+        default: 'minor'
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          check-latest: true
+          node-version: lts/*
+      - uses: nearform-actions/optic-release-automation-action@5d21495f3372aaed49d2b9d36325123b323227d6 # v4.11.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          semver: ${{ github.event.inputs.semver }}
+          sync-semver-tags: true

@@ -1,14 +1,13 @@
 name: CI
 
 on:
-  push:
-    paths-ignore:
-      - 'requests/**'
-      - '*.md'
   pull_request:
+    branches:
+      - main
     paths-ignore:
       - 'requests/**'
       - '*.md'
+
 
 jobs:
   test:
