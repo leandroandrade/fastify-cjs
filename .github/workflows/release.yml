@@ -6,7 +6,12 @@ on:
       semver:
         description: 'The semver to use'
         required: true
-        default: 'minor'
+        default: minor
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
   pull_request:
     types: [closed]
 
@@ -26,8 +31,8 @@ jobs:
         with:
           check-latest: true
           node-version: lts/*
-      - uses: nearform-actions/optic-release-automation-action@5d21495f3372aaed49d2b9d36325123b323227d6 # v4.11.2
+      - uses: nearform-actions/optic-release-automation-action@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           semver: ${{ github.event.inputs.semver }}
-          sync-semver-tags: true
+          commit-message: 'chore: release {version}'
