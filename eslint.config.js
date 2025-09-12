@@ -1,6 +1,15 @@
 const neo = require('neostandard');
 
 module.exports = [
+  {
+    ignores: [
+      'public/**/*',
+      'dist/**/*',
+      'build/**/*',
+      'node_modules/**/*',
+      'coverage/**/*'
+    ]
+  },
   ...neo({
     semi: true
   }),

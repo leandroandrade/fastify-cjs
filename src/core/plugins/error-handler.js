@@ -11,7 +11,7 @@ async function errorHandlerPlugin(fastify, opts) {
     }
 
     if (statusCode >= 400 && statusCode <= 499) {
-      return fastify.httpErrors.createError(statusCode, err?.message || 'Erro de validação!')
+      return fastify.httpErrors.createError(statusCode, err?.message || 'Erro de validação!');
     }
 
     return fastify.httpErrors.internalServerError('Sorry, there was an error processing your request.');
