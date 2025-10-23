@@ -1,10 +1,10 @@
-FROM node:25.0.0-bullseye-slim AS build
+FROM node:24.10.0-bullseye-slim AS build
 RUN apt-get update && apt-get install -y --no-install-recommends dumb-init
 WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN npm ci --only=production
 
-FROM node:25.0.0-bullseye-slim
+FROM node:24.10.0-bullseye-slim
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 USER node
 WORKDIR /usr/src/app
@@ -15,4 +15,4 @@ ENV NODE_ENV=production
 
 EXPOSE 8080
 
-CMD ["dumb-init", "node", "src/server.js"]
+CMD ["dumb-init", "node", "--disable-sigusr1" ,"src/server.js"]
