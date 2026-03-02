@@ -40,6 +40,6 @@
   "devDependencies": {
     "c8": "^11.0.0",
     "eslint": "^9.33.0",
-    "neostandard": "^0.12.2"
+    "neostandard": "^0.13.0"
   }
 }
